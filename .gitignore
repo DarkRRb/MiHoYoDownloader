@@ -1,0 +1,9 @@
+# vscode
+/.vscode
+
+# dev container
+/.devcontainer
+
+# dotnet
+/*/obj
+/*/bin

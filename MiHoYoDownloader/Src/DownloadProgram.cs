@@ -109,7 +109,7 @@ public class DownloadProgram {
 
                 using Stream origin = await response.Content.ReadAsStreamAsync(token);
                 using Stream input = new DecompressionStream(origin);
-                using Stream output = File.OpenWrite(chunk.Path);
+                using Stream output = File.Open(chunk.Path, FileMode.Create, FileAccess.Write);
                 await input.CopyToAsync(output, token);
             } finally {
                 ulong cCount_ = Interlocked.Increment(ref cFinished);

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -84,6 +83,8 @@ public class DownloadProgram {
 
             Interlocked.Increment(ref fCount);
             foreach (SophonChunk chunk in file.Chunks) chunks.Add(new ChunkContext(file, chunk));
+
+            if (File.Exists(file.TargetPath)) File.Delete(file.TargetPath);
         });
         await console.WriteLineAsync();
 

@@ -1,21 +1,10 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using MiHoYoDownloader.Contexts;
 using MiHoYoDownloader.Entities;
-using MiHoYoDownloader.Utilities;
 
 using Umrab.Options;
-
-using ZstdSharp;
 
 namespace MiHoYoDownloader;
 
@@ -68,7 +57,7 @@ public class Program {
         await (result.SubCommand switch {
             { Command.Name: "games" } r => GamesProgram.GamesAsync(r, cts.Token),
             { Command.Name: "download" } r => DownloadProgram.DownloadAsync(r, cts.Token),
-            _ => throw new NotImplementedException(),
+            _ => throw new Exception("Use --help to get usage."),
         });
 
         void Cancel(object? source, ConsoleCancelEventArgs @event) {
